@@ -1,14 +1,18 @@
 package main
 
 import (
-	"fmt"
+	"chat/util"
 	"os"
 )
 
 func main() {
-	if len(os.Args) > 1 {
-		fmt.Println("I am the guest")
+
+	args := os.Args
+	if len(args) > 1 {
+
+		util.RunGuest(hostIP)
 	} else {
-		fmt.Println("I am the host")
+
+		util.RunHost(listenIP + ":" + listenPort)
 	}
 }
