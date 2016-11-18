@@ -3,18 +3,25 @@ package main
 import (
 	"chat/util"
 	"errors"
+	"fmt"
 	"os"
 	"time"
 )
 
 func main() {
-	listenPort := getListenPort()
-	args := os.Args
+
+	args, err := readArgs()
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
 	if len(args) > 1 {
 		hostIP := args[1]
 		util.RunGuest(hostIP)
 	} else {
 		listenIP := util.GetLocalNetworkIP()
+		listenPort := getListenPort()
 		util.RunHost(listenIP + ":" + listenPort)
 	}
 }
