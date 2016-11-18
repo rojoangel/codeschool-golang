@@ -8,10 +8,25 @@ import (
 	"time"
 )
 
+type guestConnection struct {
+	ip       string
+	userName string
+}
+
+func main() {
+	ip := util.GetGuestIP()
+	userName := "Kerry"
+	gConn := guestConnection{ip: ip, userName: userName}
+
+	fmt.Println(gConn)
+}
+
+/*
 func main() {
 	hostIP := util.GetHostIP()
 	fmt.Println(isIPBlocked(hostIP))
 }
+*/
 
 func isIPBlocked(ip string) bool {
 	blockedIPs := getBlockedIPs()
