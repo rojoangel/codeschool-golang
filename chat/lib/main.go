@@ -1,7 +1,8 @@
 package lib
 
 import (
-	"fmt"
+	"chat/httpService"
+	"sync"
 	"time"
 )
 
@@ -17,15 +18,17 @@ type visitorConnection struct {
 }
 
 type notifier interface {
-	Notify()
+	Notify(wg *sync.WaitGroup)
 }
 
-func (g guestConnection) Notify() {
-	fmt.Println("Guest connection from user name:", g.userName)
+func (g guestConnection) Notify(wg *sync.WaitGroup) {
+	httpService.SendNotification()
+	wg.Done()
 }
 
-func (v visitorConnection) Notify() {
-	fmt.Println("Visitor connected at:", v.connHour)
+func (v visitorConnection) Notify(wg *sync.WaitGroup) {
+	httpService.SendNotification()
+	wg.Done()
 }
 
 func GetAllConnections() []notifier {
