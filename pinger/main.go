@@ -6,7 +6,10 @@ import (
 )
 
 func main() {
-	isAlive := false
-
+	for {
+		if util.PingChatServer() {
+			break
+		}
+	}
 	fmt.Println("Ping is done")
 }
