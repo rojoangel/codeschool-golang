@@ -13,12 +13,17 @@ type guestConnection struct {
 	userName string
 }
 
+func (g guestConnection) isAllowed() bool {
+	return !isIPBlocked(g.ip) && g.userName != "Darth Vader"
+}
+
 func main() {
 	ip := util.GetGuestIP()
 	userName := "Kerry"
-	gConn := guestConnection{ip: ip, userName: userName}
 
-	fmt.Println(gConn)
+	gConn := guestConnection{ip: ip, userName: userName}
+	isAllowedStatus := gConn.isAllowed()
+	fmt.Println(isAllowedStatus)
 }
 
 /*
