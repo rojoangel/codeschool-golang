@@ -13,3 +13,7 @@ func RunHost(ipPort string) {
 func GetLocalNetworkIP() string {
 	return "192.168.1.0"
 }
+
+func SaveBlockedIPs(ips [4]string) {
+	//... saves IPs
+}
