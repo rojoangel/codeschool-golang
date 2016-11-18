@@ -17,3 +17,8 @@ func GetLocalNetworkIP() string {
 func SaveBlockedIPs(ips []string) {
 	//... saves IPs
 }
+
+func GetHostIP() string {
+	// returns host IP
+	return "192.168.1.1"
+}

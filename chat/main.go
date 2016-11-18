@@ -9,10 +9,18 @@ import (
 )
 
 func main() {
-	list := getBlockedIPs()
-	for i := range list {
-		fmt.Println(list[i])
+	hostIP := util.GetHostIP()
+	fmt.Println(isIPBlocked(hostIP))
+}
+
+func isIPBlocked(ip string) bool {
+	blockedIPs := getBlockedIPs()
+	for _, blockedIP := range blockedIPs {
+		if ip == blockedIP {
+			return true
+		}
 	}
+	return false
 }
 
 func getBlockedIPs() []string {
