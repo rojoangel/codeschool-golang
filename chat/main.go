@@ -14,26 +14,42 @@ type guestConnection struct {
 	isAdmin  bool
 }
 
+type visitorConnection struct {
+	ip       string
+	connHour int
+}
+
+type notifier interface {
+	notify()
+}
+
 func (g guestConnection) isAllowed() bool {
 	return !isIPBlocked(g.ip) && g.userName != "Darth Vader"
 }
 
+// one implementation for guestConnection
 func (g guestConnection) notify() {
 	fmt.Println("Guest connection from user name:", g.userName)
 }
 
-func main() {
-	guestConns := getAllConnections()
-	for _, c := range guestConns {
-		c.notify()
-	}
+// and a different implementation for visitorConnection
+func (v visitorConnection) notify() {
+	fmt.Println("Visitor connected at:", v.connHour)
 }
 
-func getAllConnections() []*guestConnection {
-	gConn1 := &guestConnection{ip: "192.168.0.10", userName: "Darth Vader"}
-	gConn2 := &guestConnection{ip: "192.168.0.11", userName: "Obi-Wan"}
+func main() {
+	notifiers := getAllConnections()
+	for _, c := range notifiers {
+		c.notify()
+	}
 
-	return []*guestConnection{gConn1, gConn2}
+}
+
+func getAllConnections() []notifier {
+	gConn := &guestConnection{ip: "192.168.0.10", userName: "Darth Vader"}
+	vConn := &visitorConnection{ip: "192.168.0.11", connHour: time.Now().Hour()}
+
+	return []notifier{gConn, vConn}
 }
 
 /*
