@@ -9,8 +9,14 @@ import (
 )
 
 func main() {
-	blockedIPs := []string{"192.168.0.19", "192.168.0.20"}
-	addToBlockedList(blockedIPs)
+	list := getBlockedIPs()
+	for i := range list {
+		fmt.Println(list[i])
+	}
+}
+
+func getBlockedIPs() []string {
+	return []string{"192.168.0.17", "192.168.0.18", "192.168.0.19", "192.168.0.20"}
 }
 
 /*
