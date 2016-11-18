@@ -1,7 +1,14 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
 func main() {
-	fmt.Println("Gopher chat")
+	if len(os.Args) > 1 {
+		fmt.Println("I am the guest")
+	} else {
+		fmt.Println("I am the host")
+	}
 }
