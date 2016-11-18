@@ -18,7 +18,7 @@ type visitorConnection struct {
 }
 
 type notifier interface {
-	Notify(wg *sync.WaitGroup)
+	Notify(*sync.WaitGroup)
 }
 
 func (g guestConnection) Notify(wg *sync.WaitGroup) {
