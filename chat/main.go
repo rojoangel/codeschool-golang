@@ -9,12 +9,13 @@ import (
 )
 
 func main() {
+	var blockedIPs []string
 
-	var blockedIPs [4]string
-	blockedIPs[0] = "192.168.0.16"
-	blockedIPs[1] = "192.168.0.17"
-	blockedIPs[2] = "192.168.0.18"
-	blockedIPs[3] = "192.168.0.19"
+	blockedIPs = append(blockedIPs, "192.168.0.16")
+	blockedIPs = append(blockedIPs, "192.168.0.17")
+	blockedIPs = append(blockedIPs, "192.168.0.18")
+	blockedIPs = append(blockedIPs, "192.168.0.19")
+	blockedIPs = append(blockedIPs, "192.168.0.20")
 
 	addToBlockedList(blockedIPs)
 }
@@ -39,7 +40,7 @@ func main() {
 }
 */
 
-func addToBlockedList(ips [4]string) {
+func addToBlockedList(ips []string) {
 	util.SaveBlockedIPs(ips)
 }
 
